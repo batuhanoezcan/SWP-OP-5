@@ -1,0 +1,44 @@
+DROP DATABASE IF EXISTS Aufgabe1;
+CREATE DATABASE IF NOT EXISTS Aufgabe1;
+USE Aufgabe1;
+
+CREATE TABLE Bestellung_v3(
+	ID INT PRIMARY KEY,
+	Kunde_ID INT,
+	Adresse_Rechnung_ID INT,
+	Adresse_Liefer_ID INT
+
+);
+
+CREATE TABLE Bestellung_Artikel(
+	Besell_ID INT,
+	Artikel_ID INT,
+	primary_key(Besell_ID, Artikel_ID),
+	Menge INT
+);
+
+CREATE TABLE Artikel(
+	ID INT PRIMARY KEY,
+	Name VARCHAR(255),
+	Preis DOUBLE
+
+);
+
+CREATE TABLE Adresse(
+	ID INT PRIMARY KEY,
+	Stadt VARCHAR(255),
+	Strasse VARCHAR(255),
+	PLZ INT,
+	Hnr VARCHAR(255)
+
+);
+
+CREATE TABLE Kunde(
+	ID INT,
+	primary key (ID),
+	TitelV VARCHAR(255),
+	Vorname VARCHAR(255),
+	Nachname VARCHAR(255),
+	TitelN VARCHAR(255)
+);
+
