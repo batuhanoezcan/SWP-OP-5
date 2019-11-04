@@ -1,31 +1,33 @@
-DROP DATABASE IF EXISTS Aufgabe1;
-CREATE DATABASE IF NOT EXISTS Aufgabe1;
-USE Aufgabe1;
+DROP DATABASE Aufgabe1;
+CREATE DATABASE Aufgabe1;
 
 CREATE TABLE Bestellung_v3(
-	ID INT PRIMARY KEY,
+	ID serial PRIMARY KEY,
 	Kunde_ID INT,
 	Adresse_Rechnung_ID INT,
 	Adresse_Liefer_ID INT
+	foreign key(kunde_id) references kunde(id) on delete cascade
 
 );
 
 CREATE TABLE Bestellung_Artikel(
-	Besell_ID INT,
-	Artikel_ID INT,
-	primary_key(Besell_ID, Artikel_ID),
-	Menge INT
+	Besell_ID serial,
+	Artikel_ID serial,
+	primary key(Bestell_ID, Artikel_ID)
+	Menge INT,
+	foreign key (Bestell_ID) references bestellung_v3 (ID) on delete cascade,
+	foreign key (Artikel_ID) references artikel (ID)
 );
 
 CREATE TABLE Artikel(
-	ID INT PRIMARY KEY,
+	ID serial PRIMARY KEY,
 	Name VARCHAR(255),
-	Preis DOUBLE
+	Preis DOUBLE precision
 
 );
 
 CREATE TABLE Adresse(
-	ID INT PRIMARY KEY,
+	ID serial PRIMARY KEY,
 	Stadt VARCHAR(255),
 	Strasse VARCHAR(255),
 	PLZ INT,
@@ -34,11 +36,10 @@ CREATE TABLE Adresse(
 );
 
 CREATE TABLE Kunde(
-	ID INT,
+	ID serial,
 	primary key (ID),
 	TitelV VARCHAR(255),
 	Vorname VARCHAR(255),
 	Nachname VARCHAR(255),
 	TitelN VARCHAR(255)
 );
-
