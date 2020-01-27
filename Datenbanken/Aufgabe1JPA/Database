@@ -1,0 +1,45 @@
+DROP DATABASE Aufgabe1;
+CREATE DATABASE Aufgabe1;
+
+CREATE TABLE Bestellung_v3(
+	ID serial PRIMARY KEY,
+	Kunde_ID INT,
+	Adresse_Rechnung_ID INT,
+	Adresse_Liefer_ID INT
+	foreign key(kunde_id) references kunde(id) on delete cascade
+
+);
+
+CREATE TABLE Bestellung_Artikel(
+	Bestell_ID INT,
+	Artikel_ID INT,
+	primary key(Bestell_ID, Artikel_ID),
+	Menge INT,
+	foreign key (Bestell_ID) references bestellung_v3 (ID) on delete cascade,
+	foreign key (Artikel_ID) references artikel (ID)
+);
+
+CREATE TABLE Artikel(
+	ID serial PRIMARY KEY,
+	Name VARCHAR(255),
+	Preis DOUBLE precision
+
+);
+
+CREATE TABLE Adresse(
+	ID serial PRIMARY KEY,
+	Stadt VARCHAR(255),
+	Strasse VARCHAR(255),
+	PLZ INT,
+	Hnr VARCHAR(255)
+
+);
+
+CREATE TABLE Kunde(
+	ID serial,
+	primary key (ID),
+	TitelV VARCHAR(255),
+	Vorname VARCHAR(255),
+	Nachname VARCHAR(255),
+	TitelN VARCHAR(255)
+);
