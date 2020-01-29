@@ -11,7 +11,7 @@ import lombok.Setter;
 @Entity
 public class Adresse {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Setter
 	@Getter
 	private long id;
