@@ -1,0 +1,30 @@
+Beim Löschen von Einträgen wird der Eintrag in eine "Papierkorb-Tabelle" verschoben.
+Beim Updaten gibt es eine zweite idente Tabelle Update_Previous wohin der veränderte Eintrag kopiert wird damit alle Werte wieder rückgänig gemacht werden können.
+
+
+Es gibt mehrere Methoden, die aufgerufen werden um den einen Befehl rückgängig zu machen.
+
+undo_create(int primarykey);
+undo_delete(int primarykey);
+undo_update(int primarykey);
+
+
+Der Benutzer kann im Programm "UNDO" eingeben.
+Danach werden alle vorherigen Befehle chronologisch angezeigt.
+
+z.B.
+1 CREATE	23
+2 DELETE	5
+3 UPDATE	7
+4 DELETE	3
+5 CREATE	24
+6 DELETE	1
+7 UPDATE	15
+
+
+Der Benutzer wählt dann mit einer Zahl den Befehl aus den er rückgängig machen will.
+Dadurch wird die Methode aufgerufen der den gewählten Eintrag rückgängig macht.
+
+Bei CREATE wird der Eintrag einfach gelöscht.
+Bei DELETE wird der Eintrag vom "Papierkorb" wiederhergestellt.
+Bei UPDATE werden die Werte von der Previous Tabelle wiederhergestellt.
